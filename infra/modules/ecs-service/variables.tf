@@ -127,6 +127,12 @@ variable "alarm_topic_arn" {
   default     = ""
 }
 
+variable "enable_event_notifications" {
+  description = "Create EventBridge rules that forward ECS deployment-failure events to alarm_topic_arn. Must be a literal bool so Terraform can resolve the count before apply."
+  type        = bool
+  default     = false
+}
+
 variable "latency_p95_threshold_seconds" {
   type    = number
   default = 12
