@@ -185,6 +185,7 @@ module "api" {
   latency_p95_threshold_seconds = var.latency_p95_threshold_seconds
   latency_p99_threshold_seconds = var.latency_p99_threshold_seconds
   alarm_topic_arn               = aws_sns_topic.alerts.arn
+  enable_event_notifications    = true
 
   index_bucket_arn            = module.index_store.bucket_arn
   index_bucket_name           = module.index_store.bucket_name

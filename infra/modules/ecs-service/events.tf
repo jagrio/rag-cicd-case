@@ -9,7 +9,7 @@
 # ECS already announces them on the default event bus. Nothing was listening.
 
 resource "aws_cloudwatch_event_rule" "deployment_failed" {
-  count = var.alarm_topic_arn == "" ? 0 : 1
+  count = var.enable_event_notifications ? 1 : 0
 
   name        = "${var.name_prefix}-deployment-failed"
   description = "ECS abandoned or reversed a deployment of ${var.name_prefix}-api."
@@ -26,7 +26,7 @@ resource "aws_cloudwatch_event_rule" "deployment_failed" {
 }
 
 resource "aws_cloudwatch_event_target" "deployment_failed" {
-  count = var.alarm_topic_arn == "" ? 0 : 1
+  count = var.enable_event_notifications ? 1 : 0
 
   rule      = aws_cloudwatch_event_rule.deployment_failed[0].name
   target_id = "alerts"
